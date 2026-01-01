@@ -1,22 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-<meta charset="utf-8">
-<title>Daily Pay</title>
+  <meta charset="UTF-8">
+  <title>DATA PAY</title>
+  <script defer src="app.js"></script>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    h2 { margin-bottom: 10px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: left;
+    }
+    th { background: #f0f0f0; }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background: white;
+      width: 300px;
+      margin: 100px auto;
+      padding: 15px;
+      border-radius: 4px;
+    }
+    .modal-content input {
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 5px;
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>Nhập chi tiêu</h2>
+<h2>DATA PAY</h2>
 
-<label>Nội dung</label><br>
-<input id="detail"><br><br>
+<div class="nav">
+  <button onclick="prevMonth()">◀</button>
+  <strong id="currentMonth"></strong>
+  <button onclick="nextMonth()">▶</button>
 
-<label>Số tiền</label><br>
-<input id="money" type="number"><br><br>
+  <button onclick="openModal()">➕ Thêm</button>
+</div>
 
-<button onclick="save()">Lưu</button>
-<p id="msg"></p>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>DATE</th>
+      <th>DETAIL</th>
+      <th>PAY</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
 
-<script src="js/app.js"></script>
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Thêm dữ liệu</h3>
+    <input id="detail" placeholder="Detail">
+    <input id="pay" type="number" placeholder="Pay">
+    <button onclick="saveData()">Lưu</button>
+    <button onclick="closeModal()">Đóng</button>
+  </div>
+</div>
+
 </body>
 </html>
